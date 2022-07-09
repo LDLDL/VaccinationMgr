@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>确认</h2>
+<mat-dialog-content>
+  <p>{{data}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="warn" [mat-dialog-close]="false">取消</button>
+  <div class="inflate"></div>
+  <button mat-button color="primary" [mat-dialog-close]="true">确认</button>
+</mat-dialog-actions>

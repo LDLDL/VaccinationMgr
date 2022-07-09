@@ -1,0 +1,92 @@
+<div class="background-wrapper">
+  <div class="page-wrapper">
+    <div class="page-container">
+      <h2 class="site-header mat-display-1">注册</h2>
+      <mat-divider></mat-divider>
+      <form class="register-form" [formGroup]="registerForm"
+            (ngSubmit)="register(registerFormGroup)" #registerFormGroup="ngForm">
+        <div class="form-inputs">
+          <div class="form-inputs-inner">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label><label for="name">姓名</label></mat-label>
+              <input matInput id="name" formControlName="name"
+                     [placeholder]="'姓名'">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label><label for="user-id">身份证号</label></mat-label>
+              <input matInput id="user-id" formControlName="idNumber"
+                     [placeholder]="'身份证号'">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="registerForm.controls.idNumber.hasError('userExist')">
+                该身份证已注册
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field form-field-extend">
+              <mat-label><label for="password">密码</label></mat-label>
+              <input matInput id="password" formControlName="password"
+                     [type]="passwordVisible ? 'text' : 'password'"
+                     [placeholder]="'密码'">
+              <button mat-button mat-icon-button type="button" matSuffix
+                      (click)="passwordVisible = !passwordVisible" class="password-visible-toggle"
+                      [matTooltip]="passwordVisible? '隐藏密码' : '显示密码'">
+                <mat-icon>{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label><label for="password-repeat">重复密码</label></mat-label>
+              <input matInput id="password-repeat" formControlName="passwordConfirm"
+                     [type]="passwordVisible ? 'text' : 'password'"
+                     [placeholder]="'重复密码'"
+                     [errorStateMatcher]="passwordErrorStateMatcher">
+              <button mat-button mat-icon-button type="button" matSuffix
+                      (click)="passwordVisible = !passwordVisible" class="password-visible-toggle"
+                      [matTooltip]="passwordVisible? '隐藏密码' : '显示密码'">
+                <mat-icon>{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="registerForm.hasError('passwordMismatch')">
+                两次输入的密码不一致
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>性别</mat-label>
+              <mat-select formControlName="sex" [placeholder]="'性别'">
+                <mat-option *ngFor="let sex of sexs" [value]="sex">{{sex}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>生日</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="birthday"
+                     [placeholder]="'生日'" (focus)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>cake</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker [touchUi]="env.mode === 'mobile'"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label><label for="phone">手机号</label></mat-label>
+              <input matInput id="phone" formControlName="phone"
+                     [placeholder]="'手机号'">
+              <mat-icon matSuffix>smartphone</mat-icon>
+              <mat-error *ngIf="registerForm.controls.phone.hasError('phoneExist')">
+                该手机号已注册
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="operations">
+          <div class="operations-alter">
+            <a mat-stroked-button [routerLink]="['/login']">登录已有帐号</a>
+          </div>
+          <div class="inflate"></div>
+          <div class="operations-main">
+            <button mat-flat-button type="submit" color="primary" [disabled]="registerForm.invalid" class="transitioned-button strong-hover">
+              注册
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

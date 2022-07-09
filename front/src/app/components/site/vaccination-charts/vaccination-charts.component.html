@@ -1,0 +1,13 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">统计图表</h2>
+    <mat-tab-group>
+      <mat-tab label="月接种数">
+        <div echarts [options]="BarChartOption" style="height: 70vh"></div>
+      </mat-tab>
+      <mat-tab label="疫苗类型">
+        <div echarts [options]="NightingaleChartOption" style="height: 80vh"></div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

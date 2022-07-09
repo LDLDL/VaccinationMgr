@@ -1,0 +1,44 @@
+.background-wrapper {
+  background-image: url("/assets/background.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(250, 250, 250, 0.65);
+}
+
+.page-wrapper .page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper .page-container .header {
+  color: #555;
+  margin: 20px;
+  text-align: center;
+}
+
+.page-wrapper .page-container .operations {
+  margin: 100px 20px 20px;
+  display: flex;
+}
+
+.page-wrapper .page-container .operations .operation-container {
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-wrapper .page-container .operation-container .button {
+  font-size: 20px;
+  line-height: 48px;
+  width: 140px;
+  text-align: center;
+}

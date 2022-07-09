@@ -1,0 +1,123 @@
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: rgba(250, 250, 250, 0.8);
+  color: #555;
+}
+
+.page-wrapper .page-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+}
+
+.page-wrapper .page-container .head-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.page-wrapper .page-container .head-container .header {
+  margin: 20px 25px 25px;
+}
+
+.inflate {
+  flex: 1 1 auto;
+}
+
+.form {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.form .form-field {
+  margin: 20px 25px 0;
+  flex: 1 1 auto;
+}
+
+.page-wrapper .page-container .cards {
+  width: 75vw;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.page-wrapper .page-container .cards .card-container {
+  box-sizing: border-box;
+  margin: 24px 32px;
+  width: 75vw;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.page-wrapper .page-container .cards .card-container p {
+  margin: 10px 20px;
+}
+
+.page-wrapper .page-container .cards .card-container .card-column-info{
+  color: #3f51b5;
+  margin-left: 20px;
+  padding-right: 15px;
+}
+
+.card-container-info {
+  box-sizing: border-box;
+  width: 75vw;
+  margin: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container-info h2 {
+  font-size: 20px;
+}
+
+mat-tab-group {
+  width: 75vw;
+  height: 100%;
+}
+
+.card-operation {
+  display: flex;
+}
+
+.card-operation .operations {
+  margin: 15px 20px 15px 15px;
+}
+
+.card-operation .operations button {
+  margin: 0 10px;
+}
+
+@media (max-width: 599px) {
+  .page-wrapper .page-container {
+    width: 100vw;
+  }
+
+  .page-wrapper .page-container .header {
+    margin: 0 10px 20px;
+  }
+
+  .page-wrapper .page-container .cards {
+    margin: 0;
+    width: 100vw;
+  }
+
+  .page-wrapper .page-container .cards .card-container {
+    margin: 0;
+    width: 100vw;
+  }
+
+  mat-tab-group {
+    width: 100vw;
+  }
+}

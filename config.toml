@@ -1,0 +1,24 @@
+[site]
+# listen address
+listen = ":8888"
+# front-end file path
+static = "./front"
+
+[db]
+# postgresql listen address, if in remote server, use ip:port
+postgre_url = ":5432"
+# user name
+user = "postgres"
+password = "123456"
+# database name
+db_name = "ym"
+
+[security]
+salt = "SALT"
+hmac = "HMAC"
+# site manage page password
+admin_password = "123456"
+
+[https]
+cert = ""
+key = ""

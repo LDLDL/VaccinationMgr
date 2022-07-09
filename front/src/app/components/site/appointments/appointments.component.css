@@ -1,0 +1,87 @@
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #fafafa;
+  color: #555;
+}
+
+.page-wrapper .page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.page-wrapper .page-container .header {
+  margin: 20px 10px 20px;
+}
+
+.operation-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.operation-container .slide-toggle {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+}
+
+.operation-container .slide-toggle mat-slide-toggle {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form .form-field {
+  /*margin-top: 10px;*/
+  /*margin-left: 10px;*/
+  width: 300px;
+  margin: 10px 10px 0;
+  flex: 1 1 auto;
+}
+
+.mat-form-field-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.table {
+  width: 80vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.table mat-paginator {
+  background: #fafafa;
+}
+
+.table .table-container {
+  width: 100%;
+  background: #fafafa;
+}
+
+.inflate {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 599px) {
+  .page-wrapper .page-container {
+    padding-bottom: 0;
+  }
+
+  .page-wrapper .page-container .header {
+    margin: 0 10px 20px;
+  }
+
+  .table {
+    margin: 0;
+    width: 100vw;
+  }
+}

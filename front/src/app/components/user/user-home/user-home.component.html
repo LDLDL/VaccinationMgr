@@ -1,0 +1,10 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h1 class="header mat-display-3">疫苗预约接种</h1>
+    <div class="operations">
+      <div class="operation-container" *ngFor="let navi of navigations">
+        <button mat-button [routerLink]="navi.url">{{navi.name}}</button>
+      </div>
+    </div>
+  </div>
+</div>

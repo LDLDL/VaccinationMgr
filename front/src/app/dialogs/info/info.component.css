@@ -1,0 +1,23 @@
+h2 {
+  text-align: center;
+  color: #3f51b5;
+}
+
+mat-dialog-content {
+  max-width: calc(80vw - 48px);
+  width: 300px;
+}
+
+mat-dialog-content p {
+  text-align: center;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-dialog-actions button{
+  flex: 0 0 auto;
+}

@@ -1,0 +1,94 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">预约管理</h2>
+    <mat-divider></mat-divider>
+    <div class="table mat-elevation-z8">
+      <div class="operation-container">
+        <form class="form" [formGroup]="dateForm">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>日期</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date"
+                   [placeholder]="'日期'" (click)="picker.open()"
+                   (dateChange)="onDateChange()" (dateInput)="onDateChange()">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker [touchUi]="env.mode === 'mobile'"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>搜索</mat-label>
+            <input matInput (keyup)="applyFilter($event)">
+          </mat-form-field>
+        </form>
+
+        <div class="slide-toggle">
+          <mat-slide-toggle [(ngModel)]="showVaccination" color="primary">
+            显示已接种的预约
+          </mat-slide-toggle>
+        </div>
+      </div>
+<!--      <mat-paginator [length]="resultLength"-->
+<!--                     [pageSize]="5"-->
+<!--                     [pageSizeOptions]="[5, 10, 20]"-->
+<!--                     showFirstLastButtons>-->
+<!--      </mat-paginator>-->
+      <table class="table-container" mat-table [dataSource]="showVaccination? appointmentsDataSource: appointmentsDataSourceNoVaccination">
+        <ng-container matColumnDef="appointment-no">
+          <th mat-header-cell *matHeaderCellDef>预约号</th>
+          <td mat-cell *matCellDef="let elemet">
+            {{elemet.appointment_id}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="person-name">
+          <th mat-header-cell *matHeaderCellDef>姓名</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.person?.name}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="person-id">
+          <th mat-header-cell *matHeaderCellDef>身份证号</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.person_id_number}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vaccine">
+          <th mat-header-cell *matHeaderCellDef>疫苗</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.vaccine?.manufacturer}} {{element.vaccine?.type}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vaccination">
+          <th mat-header-cell *matHeaderCellDef>是否接种</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.vaccination? '是': '否'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>操作</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn" matTooltip="删除"
+                    (click)="onDeleteClick(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" matTooltip="接种"
+                    (click)="onVaccinationClick(element)" [disabled]="element.vaccination">
+              <mat-icon>vaccines</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">没有预约</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

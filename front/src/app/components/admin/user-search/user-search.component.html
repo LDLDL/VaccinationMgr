@@ -1,0 +1,102 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <div class="head-container">
+      <h2 class="header mat-display-1">查询用户</h2>
+      <div class="inflate"></div>
+      <form class="form" [formGroup]="userSearchForm" (ngSubmit)="searchUser()">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>身份证号</mat-label>
+          <input matInput formControlName="id_number" placeholder="身份证号">
+          <button matSuffix mat-icon-button color="primary" type="submit">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+    </div>
+    <mat-tab-group *ngIf="user">
+      <mat-tab label="用户信息">
+        <div class="cards">
+          <div class="card-container">
+            <p>
+              <span class="card-column-info mat-h3">姓名: </span>
+              <span class="card-column-content mat-h3">{{user?.name}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">性别: </span>
+              <span class="card-column-content mat-h3">{{user?.sex}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">身份证号: </span>
+              <span class="card-column-content mat-h3">{{user?.id_number}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">生日: </span>
+              <span class="card-column-content mat-h3">{{birthday | date: "yyyy 年 MM 月 dd日"}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">手机号: </span>
+              <span class="card-column-content mat-h3">{{user?.phone_number}}</span>
+            </p>
+
+            <div class="card-operation">
+              <div class="inflate"></div>
+              <div class="operations">
+                <button mat-stroked-button color="primary" (click)="onSetPasswordClick()">
+                  修改密码
+                </button>
+                <button mat-stroked-button color="warn" (click)="onUserDeleteClick()">
+                  移除用户
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="接种记录">
+        <div class="cards">
+          <div class="card-container" *ngFor="let vaccination of vaccinationLogs; let i=index">
+            <p>
+              <span class="card-column-info mat-h3">接种站点: </span>
+              <span class="card-column-content mat-h3">{{vaccination.vaccination_site?.name}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">疫苗类型: </span>
+              <span class="card-column-content mat-h3">{{vaccination.vaccine?.type}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">疫苗厂家: </span>
+              <span class="card-column-content mat-h3">{{vaccination.vaccine?.manufacturer}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">时间: </span>
+              <span class="card-column-content mat-h3">{{ts[i] | date:"yyyy 年 MM 月 dd 日 h:mm:ss"}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">接种剂次: </span>
+              <span class="card-column-content mat-h3">{{vaccination.vaccination_times}}</span>
+            </p>
+
+            <div class="card-operation">
+              <div class="inflate"></div>
+              <div class="operations">
+<!--                <button mat-stroked-button color="primary">修改</button>-->
+                <button mat-stroked-button color="warn"
+                        (click)="onVaccinationDeleteClick(vaccination)">
+                  移除</button>
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+          </div>
+          <div class="card-container-info" *ngIf="ts.length === 0">
+            暂无接种记录
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div class="card-container-info" *ngIf="!user">
+      <mat-divider></mat-divider>
+      <h2>暂无结果</h2>
+    </div>
+  </div>
+</div>

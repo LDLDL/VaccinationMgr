@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">接种记录</h2>
+    <mat-divider></mat-divider>
+    <div class="cards">
+      <div *ngIf="vaccinations">
+        <div class="card-container" *ngFor="let vaccination of vaccinations?.vaccinations; let i=index">
+          <p>
+            <span class="card-column-info mat-h3">接种站点: </span>
+            <span class="card-column-content mat-h3">{{vaccination.vaccination_site?.name}}</span>
+          </p>
+          <p>
+            <span class="card-column-info mat-h3">疫苗类型: </span>
+            <span class="card-column-content mat-h3">{{vaccination.vaccine?.type}}</span>
+          </p>
+          <p>
+            <span class="card-column-info mat-h3">疫苗厂家: </span>
+            <span class="card-column-content mat-h3">{{vaccination.vaccine?.manufacturer}}</span>
+          </p>
+          <p>
+            <span class="card-column-info mat-h3">时间: </span>
+            <span class="card-column-content mat-h3">{{ts[i] | date:"yyyy 年 MM 月 dd 日 h:mm:ss"}}</span>
+          </p>
+          <p>
+            <span class="card-column-info mat-h3">接种剂次: </span>
+            <span class="card-column-content mat-h3">{{vaccination.vaccination_times}}</span>
+          </p>
+          <mat-divider></mat-divider>
+        </div>
+        <div class="card-container-info" *ngIf="ts.length === 0">
+          <h2>您暂时没有接种记录</h2>
+        </div>
+      </div>
+      <div *ngIf="!vaccinations">
+        <div class="card-container-info">
+          <h2>服务器错误,请退出重试</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

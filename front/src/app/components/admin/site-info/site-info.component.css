@@ -1,0 +1,169 @@
+.page-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #fafafa;
+  color: #555;
+}
+
+.page-wrapper .page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  max-width: 100vw;
+}
+
+.page-wrapper .page-container .header {
+  margin: 20px 10px 25px;
+}
+
+.inflate {
+  flex: 1 1 auto;
+}
+
+.cards {
+  margin: 0 80px;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cards .card-container {
+  background: #fafafa;
+  box-sizing: border-box;
+  border-radius: 4px;
+  /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
+  margin: 24px 16px;
+  width: 500px;
+  max-width: 100vw;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.cards .card-container p {
+  margin: 10px 20px;
+}
+
+.cards .card-container .card-column-info{
+  color: #3f51b5;
+  margin-left: 20px;
+  padding-right: 15px;
+}
+
+.cards .card-container-info {
+  box-sizing: border-box;
+  max-width: 400px;
+  min-width: 280px;
+  margin: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards .card-container-info h2 {
+  font-size: 20px;
+}
+
+mat-tab-group {
+  width: 75vw;
+  height: 100%;
+  display: flex;
+}
+
+.mat-tab-body-wrapper {
+  flex: 1 1 auto;
+}
+
+.card-operation {
+  display: flex;
+}
+
+.card-operation .operations {
+  margin: 15px 20px 15px 15px;
+}
+
+.card-operation .operations button {
+  margin: 0 10px;
+}
+
+.mat-fab-add-container {
+  z-index: 5;
+  position: relative;
+  display: flex;
+  justify-content: right;
+  right: 15px;
+  bottom: 15px;
+}
+
+.mat-fab-add-container .mat-fab-add {
+  margin-right: 14px;
+}
+
+.table {
+  width: 75vw;
+  height: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.table mat-paginator {
+  background: #fafafa;
+}
+
+.table .table-container {
+  width: 100%;
+  background: #fafafa;
+}
+
+.card-operation {
+  display: flex;
+}
+
+.card-operation .operations {
+  margin: 15px 20px 15px 15px;
+}
+
+.card-operation .operations button {
+  margin: 0 10px;
+}
+
+@media (max-width: 599px) {
+  .page-wrapper .page-container .header {
+    margin: 0 10px 20px;
+  }
+
+  .page-wrapper .page-container .cards {
+    margin: 0;
+  }
+
+  .page-wrapper .page-container .cards .card-container {
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  mat-tab-group {
+    width: 100vw;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+
+  .table {
+    margin: 0;
+    width: 100vw;
+    /*min-width: 400px;*/
+  }
+
+  .mat-fab-add-container {
+    position: absolute;
+  }
+}

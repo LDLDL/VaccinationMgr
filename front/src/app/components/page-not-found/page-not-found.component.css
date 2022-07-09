@@ -1,0 +1,35 @@
+.page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+}
+
+.page-wrapper .page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-wrapper .page-container .header,
+.page-wrapper .page-container .subheader {
+  color: #444;
+  margin: 20px;
+  text-align: center;
+}
+
+.page-wrapper .page-container .operation-container {
+  flex: 0 0 100%;
+  margin: 100px 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-wrapper .page-container .operation-container .back-button {
+  font-size: 20px;
+  line-height: 48px;
+  width: 180px;
+  text-align: center;
+}

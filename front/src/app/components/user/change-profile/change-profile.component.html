@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>修改个人信息</h2>
+<form [formGroup]="changeProfileForm" #changeProfileFormGroup="ngForm"
+      (ngSubmit)="changeProfile(changeProfileFormGroup)" class="changeProfileForm">
+  <mat-dialog-content>
+    <div class="form-inputs">
+      <div class="form-inputs-inner">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label><label for="name">姓名</label></mat-label>
+          <input matInput id="name" formControlName="name"
+                 [placeholder]="'姓名'">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>性别</mat-label>
+          <mat-select formControlName="sex" [placeholder]="'性别'">
+            <mat-option *ngFor="let sex of sexs" [value]="sex">{{sex}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>生日</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthday"
+                 [placeholder]="'生日'" (focus)="picker.open()">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>cake</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker [touchUi]="env.mode === 'mobile'"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label><label for="phone">手机号</label></mat-label>
+          <input matInput id="phone" formControlName="phone"
+                 [placeholder]="'手机号'">
+          <mat-icon matSuffix>smartphone</mat-icon>
+          <mat-error *ngIf="changeProfileForm.controls.phone.hasError('phoneExist')">
+            该手机号已注册
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-actions>
+    <button mat-button color="warn" mat-dialog-close>取消</button>
+    <div class="inflate"></div>
+    <button mat-button color="primary" mat-dialog-close type="submit" [disabled]="changeProfileForm.invalid">
+      更改
+    </button>
+  </mat-dialog-actions>
+</form>

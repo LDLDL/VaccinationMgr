@@ -1,0 +1,42 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">疫苗接种登记</h2>
+    <mat-divider></mat-divider>
+    <div class="form">
+      <form class="form-container" [formGroup]="vaccinationForm" #vaccinationFormGroup="ngForm"
+            (ngSubmit)="addVaccinations(vaccinationFormGroup)">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label><label for="personIdNumber">身份证号</label></mat-label>
+          <input matInput formControlName="personIdNumber"
+                 [placeholder]="'身份证号'" id="personIdNumber">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>疫苗</mat-label>
+          <mat-select formControlName="vaccine">
+            <mat-option *ngFor="let inventory of inventories" [value]="inventory">
+              {{inventory.vaccine?.manufacturer}} {{inventory.vaccine?.type}}
+            </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="vaccinationForm.controls.vaccine.value">
+            疫苗剩余数量: {{vaccinationForm.controls.vaccine.value.number}}
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label><label for="vaccinationTimes">接种剂次</label></mat-label>
+          <input matInput formControlName="vaccinationTimes" type="number"
+                 [placeholder]="'接种剂次'" id="vaccinationTimes">
+          <mat-icon matSuffix>vaccines</mat-icon>
+        </mat-form-field>
+        <div class="operations">
+          <div class="inflate"></div>
+          <div class="operation-container">
+            <button mat-flat-button color="primary" [disabled]="vaccinationForm.invalid" type="submit">
+              提交
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

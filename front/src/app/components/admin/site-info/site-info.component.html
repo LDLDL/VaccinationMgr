@@ -1,0 +1,98 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">站点信息</h2>
+    <mat-tab-group>
+      <mat-tab label="站点信息" *ngIf="site">
+        <div class="cards">
+          <div class="card-container">
+            <p>
+              <span class="card-column-info mat-h3">站点名: </span>
+              <span class="card-column-content mat-h3">{{site?.name}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">站点ID: </span>
+              <span class="card-column-content mat-h3">{{site?.id}}</span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">地区: </span>
+              <span class="card-column-content mat-h3">
+              {{site?.province}} {{site?.city}} {{site?.district}}
+            </span>
+            </p>
+            <p>
+              <span class="card-column-info mat-h3">详细地址: </span>
+              <span class="card-column-content mat-h3">{{site?.address}}</span>
+            </p>
+
+            <div class="card-operation">
+              <div class="inflate"></div>
+              <div class="operations">
+                <button mat-stroked-button color="primary" (click)="onSiteEditClick()">
+                  修改信息
+                </button>
+                <button mat-stroked-button color="warn" (click)="onSiteDeleteClick()">
+                  移除站点
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="站点管理员">
+        <div class="table mat-elevation-z8">
+          <table mat-table class="table-container" [dataSource]="admins">
+            <ng-container matColumnDef="account">
+              <th mat-header-cell *matHeaderCellDef>账户</th>
+              <td mat-cell *matCellDef="let element">{{element.account}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>名称</th>
+              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+              <th mat-header-cell *matHeaderCellDef>电话</th>
+              <td mat-cell *matCellDef="let element">{{element.phone}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>操作</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" matTooltip="更改密码"
+                        (click)="onSetPasswordClick(element)">
+                  <mat-icon>vpn_key</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" matTooltip="删除"
+                        (click)="onDeleteClick(element)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayColumns">
+            </tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">没有数据</td>
+            </tr>
+          </table>
+
+          <div class="inflate"></div>
+
+          <div class="mat-fab-add-container">
+            <button mat-fab class="mat-fab-add" color="primary" matTooltip="添加"
+                    (click)="addSiteAdmin()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+
+      <div class="card-container-info" *ngIf="!site">
+        <h2>暂无结果</h2>
+      </div>
+    </mat-tab-group>
+  </div>
+</div>

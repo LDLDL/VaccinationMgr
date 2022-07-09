@@ -1,0 +1,110 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">我的预约</h2>
+    <mat-tab-group *ngIf="appointment">
+      <mat-tab label="有效预约">
+        <div class="cards">
+            <div class="card-container" *ngIf="appointment.available">
+              <p>
+                <span class="card-column-info mat-h3">姓名: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.person?.name}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">身份证: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.person_id_number}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">预约号: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.appointment_id}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">日期: </span>
+                <span class="card-column-content mat-h3">
+                  {{appointmentDate | date:"yyyy 年 MM 月 dd 日"}}
+                </span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">接种站点: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.vaccination_site?.name}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">地点: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.vaccination_site?.address}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">疫苗类型: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.vaccine?.type}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">疫苗厂家: </span>
+                <span class="card-column-content mat-h3">{{appointment.available.vaccine?.manufacturer}}</span>
+              </p>
+              <mat-divider></mat-divider>
+              <div class="actions">
+                <div class="inflate"></div>
+                <button class="action-container" mat-flat-button color="warn" (click)="cancelAppointment()">
+                  取消预约
+                </button>
+              </div>
+            </div>
+            <div class="card-container-info" *ngIf="!appointment.available">
+              <h2>您暂时没有预约</h2>
+            </div>
+          </div>
+      </mat-tab>
+      <mat-tab label="历史预约">
+        <div class="cards">
+            <div class="card-container" *ngFor="let history of appointment.history; let i = index">
+              <p>
+                <span class="card-column-info mat-h3">姓名: </span>
+                <span class="card-column-content mat-h3">{{history.person?.name}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">身份证: </span>
+                <span class="card-column-content mat-h3">{{history.person_id_number}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">预约号: </span>
+                <span class="card-column-content mat-h3">{{history.appointment_id}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">日期: </span>
+                <span class="card-column-content mat-h3">
+                  {{historyDates[i] | date:"yyyy 年 MM 月 dd 日"}}
+                </span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">接种站点: </span>
+                <span class="card-column-content mat-h3">{{history.vaccination_site?.name}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">地点: </span>
+                <span class="card-column-content mat-h3">{{history.vaccination_site?.address}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">疫苗类型: </span>
+                <span class="card-column-content mat-h3">{{history.vaccine?.type}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">疫苗厂家: </span>
+                <span class="card-column-content mat-h3">{{history.vaccine?.manufacturer}}</span>
+              </p>
+              <p>
+                <span class="card-column-info mat-h3">是否接种: </span>
+                <span class="card-column-content mat-h3">{{history.vaccination? '是' : '否'}}</span>
+              </p>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="card-container-info" *ngIf="!appointment.history">
+              <h2>您暂时没有预约</h2>
+            </div>
+          </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div *ngIf="!appointment">
+      <div class="card-container-info">
+        <h2>服务器错误,请退出重试</h2>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">疫苗库存管理</h2>
+    <mat-divider></mat-divider>
+    <div class="table mat-elevation-z8">
+<!--      <mat-paginator [length]="resultLength"-->
+<!--                     [pageSize]="5"-->
+<!--                     [pageSizeOptions]="[5, 10, 20]"-->
+<!--                     showFirstLastButtons>-->
+<!--      </mat-paginator>-->
+
+      <table class="table-container" mat-table [dataSource]="inventoriesDataSource">
+        <ng-container matColumnDef="vaccine_id">
+          <th mat-header-cell *matHeaderCellDef>疫苗ID</th>
+          <td mat-cell *matCellDef="let element"> {{element.vaccine_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="vaccine">
+          <th mat-header-cell *matHeaderCellDef>疫苗</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.vaccine?.manufacturer}} {{element.vaccine?.type}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef>数量</th>
+          <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>操作</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" matTooltip="编辑"
+                    (click)="onEditClick(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" matTooltip="删除"
+                    (click)="onDeleteClick(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">没有疫苗库存</td>
+        </tr>
+      </table>
+
+      <div class="inflate"></div>
+
+      <div class="mat-fab-add-container">
+        <button mat-fab class="mat-fab-add" color="primary" matTooltip="添加"
+                (click)="addInventory()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

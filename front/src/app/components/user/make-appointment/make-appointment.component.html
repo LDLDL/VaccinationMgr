@@ -1,0 +1,117 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <h2 class="header mat-display-1">预约</h2>
+    <mat-divider></mat-divider>
+      <mat-stepper class="stepper" linear
+                   [orientation]="env.mode === 'mobile'? 'vertical' : 'horizontal'">
+        <mat-step class="step-container" [stepControl]="locationForm">
+          <ng-template matStepLabel>选择地区</ng-template>
+          <form class="form" [formGroup]="locationForm">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>省份</mat-label>
+              <mat-select (selectionChange)="onProvincesSelectionChange($event)" formControlName="province">
+                <mat-option *ngFor="let province of provinces" [value]="province">
+                  {{province.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>城市</mat-label>
+              <mat-select (selectionChange)="onCitySelectionChange($event)" formControlName="city">
+                <mat-option *ngFor="let city of cities" [value]="city">
+                  {{city.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>区/县</mat-label>
+              <mat-select (selectionChange)="onDistrictSelectionChange($event)" formControlName="district">
+                <mat-option *ngFor="let district of districts" [value]="district">
+                  {{district.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="operations">
+              <div class="inflate"></div>
+              <button mat-flat-button matStepperNext type="button" color="primary"
+                      class="operation-container" [disabled]="locationForm.invalid">
+                下一步
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="siteForm">
+          <ng-template matStepLabel>选择站点</ng-template>
+          <form class="form" [formGroup]="siteForm">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>站点</mat-label>
+              <mat-select formControlName="vaccinationSite" (selectionChange)="onSiteSelectionChange($event)">
+                <mat-option *ngFor="let site of sites" [value]="site">
+                  {{site.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="operations">
+              <button mat-button matStepperPrevious type="button" color="primary">
+                上一步
+              </button>
+              <div class="inflate"></div>
+              <button mat-flat-button matStepperNext type="button" color="primary"
+                      [disabled]="siteForm.invalid">
+                下一步
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="dateForm">
+          <ng-template matStepLabel>选择日期</ng-template>
+          <form class="form" [formGroup]="dateForm">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>日期</mat-label>
+              <mat-select formControlName="date" (selectionChange)="onDateSelectionChange($event)">
+                <mat-option *ngFor="let date of dates" [value]="date">
+                  {{date | date:"MM 月 dd 日"}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="operations">
+              <button mat-button matStepperPrevious type="button" color="primary">
+                上一步
+              </button>
+              <div class="inflate"></div>
+              <button mat-flat-button matStepperNext type="button" color="primary"
+                      [disabled]="dateForm.invalid">
+                下一步
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>选择疫苗种类</ng-template>
+          <form class="form" [formGroup]="vaccineForm" (ngSubmit)="makeAppointment()">
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>疫苗</mat-label>
+              <mat-select formControlName="vaccine">
+                <mat-option *ngFor="let arrangement of arrangements" [value]="arrangement">
+                  {{arrangement.vaccine?.manufacturer}} {{arrangement.vaccine?.type}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-label *ngIf="vaccineForm.controls.vaccine.value">可预约数:
+              {{vaccineForm.controls.vaccine.value["total_number"] - vaccineForm.controls.vaccine.value["booked_number"]}}
+            </mat-label>
+            <div class="operations">
+              <button mat-button matStepperPrevious type="button" color="primary">
+                上一步
+              </button>
+              <div class="inflate"></div>
+              <button mat-flat-button type="submit" color="primary"
+                      [disabled]="vaccineForm.invalid">
+                提交预约
+              </button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+  </div>
+</div>
